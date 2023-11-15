@@ -1,0 +1,68 @@
+/* .navBar{
+
+list-style-type: none;
+  margin: 0;
+  padding: 100px;
+  overflow: hidden;
+  background-color: #333;
+} */
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 70px;
+    line-height: 70px;
+    cursor: default;
+    z-index: 2;
+    background-position: left;
+    background-color: #282B30;
+    padding-right: 20px;
+}
+
+.titleHeader {
+    display: flex; /* Enables Flexbox */
+    justify-content: space-between; /* Distributes space between elements */
+    align-items: center; /* Aligns items vertically in the center */
+    height: 100%; /* Ensures it takes full height of the parent */
+    padding: 0 20px; /* Adds padding on the left and right sides */
+}
+
+.titleHeader h1 {
+    margin: 0; /* Resets any margin on the h1 */
+    flex-grow: 1; /* Allows h1 to grow and take available space */
+    text-align: center; /* Centers the text inside h1 */
+}
+
+
+/* Other styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #424549;
+    display: flex;
+    font-family: sans-serif;
+}
+
+
+.btn{
+    border: none;
+  color: #7289da;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:5px;
+}
+
+.btn:hover {
+    opacity: .7;
+}

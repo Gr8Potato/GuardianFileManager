@@ -6,10 +6,27 @@
 
 body{
     min-height: 100vh;
-    background: #eee;
+    background: #424549;
     display: flex;
     font-family: sans-serif;
 }
+
+.header{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 70px;
+    line-height: 70px;
+    cursor: default;
+    z-index: 2;
+    background-position: left;
+    background-color: rgb(191, 118, 230);
+    padding-right:20px;
+
+}
+
+
 
 .container{
     margin: auto;
@@ -48,13 +65,21 @@ body{
     height: 34px;
     border: none;
     outline: none;
-    background: #27a327;
+    background: #7289da;
     cursor: pointer;
     font-size: 16px;
     text-transform: uppercase;
     color: white;
     border-radius: 4px;
     transition: .3s;
+}
+
+.container > h1, .container form h1 {
+    color: rgb(147, 147, 147);
+}
+
+.container > p, .container form p {
+    color: rgb(147, 147, 147);
 }
 
 .container form .btn:hover{
@@ -64,3 +89,18 @@ body{
 .paddingNeeded{
     padding-top: 10px;
 }
+
+.button{
+    border: none;
+  color: green;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+
