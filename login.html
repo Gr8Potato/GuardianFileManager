@@ -1,41 +1,49 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css">
 
-        <title>Login form design</title>
-       
-        
-    </head>
-    <body>
-      
-        <div class="container">
-            <h1>File System Management</h1>
-            <form action="">
-                <h1>Welcome!</h1>
-                <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="text" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" required>
-                </div>
-                <input type="submit" class="btn" value="Login">
-            </form>
-            <div class = "paddingNeeded">
-                <p>Don't have an account?
-                    <a  href="newAccount.html" >Click me</a>
-                </p>
-                <a  href="fileSys.html" >This is Temp</a>
-                
-                
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Login</title>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>File System Management</h1>
+        <form action="loginhandler" method="post">
+            <h1>Welcome!</h1>
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input id="username" name="name" type="text" class="form-control" required>
             </div>
-        </div>
-        
-    </body>
+            <div class="form-group">
+                <label for="pass">Password</label>
+                <input id="password" name="pass" type="password" class="form-control" autocomplete="new-password" required>
+            </div>
+            <input type="submit" class="btn" value="Login">
+        </form>
+    </div>
+    <div id="errorMessageContainer">
+
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('error')) {
+            const errorMessage = params.get('error');
+            const messageContainer = document.getElementById('errorMessageContainer');
+            const messageText = document.createTextNode(errorMessage);
+            messageContainer.appendChild(messageText);
+        }
+    </script>
+
+
+
+</body>
+
 </html>
