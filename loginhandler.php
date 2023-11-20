@@ -25,7 +25,7 @@ if ($ldap_bind) {
     header("Location: main"); // this is one of those PHP things. this is a strict syntax we need for apache to properly redirect our program
 } else {
     ldap_close($ldap_con);
-    redirect("login.html","Invalid username and/or password");
+    redirect("login","Invalid username and/or password");
 }
 
 function sanitize(&$data)
