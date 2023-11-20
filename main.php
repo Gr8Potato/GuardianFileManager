@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="module" src="main.js"></script>
     <title>File Management System</title>
 </head>
 
@@ -19,10 +20,18 @@
     <header>
         <div class="header">
             <div class="titleHeader">
-                <input type="submit" class="btn" value="Upload">
+
+                <form id="upload_form" method="post" enctype="multipart/form-data">
+                    Select file to upload:
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
+                </form>
+
+                <div id="upload_status"></div>
+
                 <h1>File Management System</h1>
                 <form action="logouthandler" method="post">
-                <input type="submit" class="btn" value="Logout">
+                    <input type="submit" class="btn" value="Logout">
                 </form>
             </div>
         </div>
