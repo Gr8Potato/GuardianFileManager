@@ -21,7 +21,9 @@
             <div class="titleHeader">
                 <input type="submit" class="btn" value="Upload">
                 <h1>File Management System</h1>
+                <form action="logouthandler" method="post">
                 <input type="submit" class="btn" value="Logout">
+                </form>
             </div>
         </div>
     </header>
@@ -63,9 +65,9 @@
                 echo "<td>" . htmlspecialchars($file['name']) . "</td>";
                 echo "<td>" . $file['date'] . "</td>";
                 echo "<td>";
-                echo "<button><img src='../LDAP_Login/Icons/eye.png' alt='Preview'></button>";
-                echo "<button><img src='../LDAP_Login/Icons/download.png' alt='Download'></button>";
-                echo "<button class='delete-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='../LDAP_Login/Icons/trash.png' alt='Delete'></button>";
+                echo "<button><img src='Icons/eye.png' alt='Preview'></button>";
+                echo "<button><img src='Icons/download.png' alt='Download'></button>";
+                echo "<button class='delete-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
                 echo "</td>";
                 echo "</tr>";
             }
