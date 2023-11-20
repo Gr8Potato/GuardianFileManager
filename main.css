@@ -34,8 +34,6 @@ list-style-type: none;
     text-align: center; /* Centers the text inside h1 */
 }
 
-
-/* Other styles */
 * {
     margin: 0;
     padding: 0;
@@ -66,3 +64,23 @@ body {
 .btn:hover {
     opacity: .7;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.icon {
+    text-align: center;
+}
+
