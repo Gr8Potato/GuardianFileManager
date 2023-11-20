@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-
+    <script type="module" src="main.js"></script>
+    <script defer nomodule></script>
     <title>Login</title>
 
 
@@ -23,7 +24,8 @@
             </div>
             <div class="form-group">
                 <label for="pass">Password</label>
-                <input id="password" name="pass" type="password" class="form-control" autocomplete="new-password" required>
+                <input id="password" name="pass" type="password" class="form-control" autocomplete="new-password"
+                    required>
             </div>
             <input type="submit" class="btn" value="Login">
         </form>
@@ -31,18 +33,6 @@
     <div id="errorMessageContainer">
 
     </div>
-
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('error')) {
-            const errorMessage = params.get('error');
-            const messageContainer = document.getElementById('errorMessageContainer');
-            const messageText = document.createTextNode(errorMessage);
-            messageContainer.appendChild(messageText);
-        }
-    </script>
-
-
 
 </body>
 

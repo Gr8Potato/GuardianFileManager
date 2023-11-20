@@ -22,7 +22,7 @@ $ldap_bind = ldap_bind($ldap_con, $ldap_usr, $ldap_pass);
 if ($ldap_bind) {
     session_start();
     $_SESSION["user"] = $user;
-    header("Location: main.html"); // this is one of those PHP things. this is a strict syntax we need for apache to properly redirect our program
+    header("Location: main"); // this is one of those PHP things. this is a strict syntax we need for apache to properly redirect our program
 } else {
     ldap_close($ldap_con);
     redirect("login.html","Invalid username and/or password");
