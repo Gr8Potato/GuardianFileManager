@@ -21,13 +21,12 @@
         <div class="header">
             <div class="titleHeader">
 
-                <form id="upload_form" method="post" enctype="multipart/form-data">
+                <form id="upload_form" action="uploadhandler" method="post" enctype="multipart/form-data">
                     Select file to upload:
                     <input type="file" name="fileToUpload" id="fileToUpload">
                     <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
                 </form>
-
-                <div id="upload_status"></div>
+                <div id="status_container"></div>
 
                 <h1>File Management System</h1>
                 <form action="logouthandler" method="post">

@@ -1,6 +1,4 @@
 <?php
-echo 'HI';
-
 session_start();
 
 if (!isset($_SESSION["user"])) {
@@ -8,10 +6,10 @@ if (!isset($_SESSION["user"])) {
     exit;
 }
 
-$userDir = "/home/" . $_SESSION["user"];
+$user_dir = "/home/" . $_SESSION["user"];
 
-if (!file_exists($userDir)) {
-    if (!mkdir($userDir, 0775, true)) {
+if (!file_exists($user_dir)) {
+    if (!mkdir($user_dir, 0775, true)) {
         echo json_encode(['error' => 'Failed to create directory.']);
         exit;
     }
@@ -19,10 +17,10 @@ if (!file_exists($userDir)) {
 
 // check if the file has been uploaded via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
-    $fileTmpPath = $_FILES['fileToUpload']['tmp_name'];
-    $fileName = $_FILES['fileToUpload']['name'];
-    $fileSize = $_FILES['fileToUpload']['size'];
-    $fileType = $_FILES['fileToUpload']['type'];
+    $file_temp_path = $_FILES['fileToUpload']['tmp_name'];
+    $file_name = $_FILES['fileToUpload']['name'];
+    $file_size = $_FILES['fileToUpload']['size'];
+    $file_type = $_FILES['fileToUpload']['type'];
     $error = $_FILES['fileToUpload']['error'];
 
     // check if there's any error with the file
@@ -32,23 +30,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
     }
 
     // sanitize the file name to prevent directory traversal or other potential hazards
-    $fileNameCmps = explode(".", $fileName);
-    $fileExtension = strtolower(end($fileNameCmps));
+    $file_nameCmps = explode(".", $file_name);
+    $file_extension = strtolower(end($file_nameCmps));
 
     // define the path to save the uploaded file
-    $dest_path = $userDir . '/' . $fileName;
+    $dest_path = $user_dir . '/' . $file_name;
 
     // if the file already exists, add a number to the file name
     $counter = 1;
     while (file_exists($dest_path)) {
-        $newFileName = $fileNameCmps[0] . '_' . $counter . '.' . $fileExtension;
-        $dest_path = $userDir . '/' . $newFileName;
+        $newfile_name = $file_nameCmps[0] . '_' . $counter . '.' . $file_extension;
+        $dest_path = $user_dir . '/' . $newfile_name;
         $counter++;
     }
 
-    // Move the file from the temporary directory to the user's directory
-    if (move_uploaded_file($fileTmpPath, $dest_path)) {
-        echo json_encode(['success' => 'File uploaded successfully.']);
+    // move the file from the temporary directory to the user's directory
+    if (move_uploaded_file($file_temp_path, $dest_path)) {
+        header("Location: main?status=uploadsuccess"); //we're refreshing the browser here. appending the entry with js is out of reach currently        
     } else {
         echo json_encode(['error' => 'There was some error moving the file to the upload directory.']);
     }

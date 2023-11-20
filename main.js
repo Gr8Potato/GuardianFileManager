@@ -1,24 +1,22 @@
-document.getElementById('upload_button').addEventListener('click', function (e) {
-    uploadFile();
-});
+const params = new URLSearchParams(window.location.search);
+if (params.has('status')) {
+    const status = params.get('status');
+    const status_container = document.getElementById('status_container');
+    const status_text = document.createTextNode(status);
+    status_container.appendChild(status_text);
+}
 
-function uploadFile() {
-    console.log('uploadFile function called'); // Add this line for debugging
-    const uploadForm = document.getElementById('upload_form');
-    let formData = new FormData(uploadForm);
+document.addEventListener('DOMContentLoaded', sort_by_file_name);
 
-    fetch('uploadhandler', {
-        method: 'POST',
-        body: formData,
-    })
-        .then(response => response.text())
-        .then(data => {
-            console.log('Response data:', data); // Add this line for debugging
-            document.getElementById('upload_status').innerText = data;
-            // refreshFileList();
-        })
-        .catch(error => {
-            console.error('Error:', error); // Add this line for debugging
-            document.getElementById('upload_status').innerText = 'Error: ' + error;
-        });
+function sort_by_file_name() {
+    const table = document.querySelector('table tbody');
+    let rows = Array.from(table.rows);
+
+    rows.sort((a, b) => {
+        let nameA = a.cells[0].textContent.trim().toLowerCase();
+        let nameB = b.cells[0].textContent.trim().toLowerCase();
+        return nameA.localeCompare(nameB);
+    });
+
+    rows.forEach(row => table.appendChild(row));
 }
