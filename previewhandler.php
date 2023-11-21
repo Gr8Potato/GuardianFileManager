@@ -3,12 +3,12 @@ session_start();
 
 if (isset($_GET['filename'])) {
     $filename = $_GET['filename'];
-    $user_dir = "/home/" . $_SESSION["user"]; // Adjust as needed
+    $user_dir = "/home/" . $_SESSION["user"];
     $file_path = $user_dir . '/' . $filename;
 
     if (file_exists($file_path)) {
         $file_extension = strtolower(pathinfo($file_path, PATHINFO_EXTENSION));
-        
+
         switch ($file_extension) {
             case 'jpg':
             case 'jpeg':
