@@ -12,7 +12,7 @@ $ldap_usr = "uid=$user,ou=People,dc=nodomain";
 //connect to ldap
 $ldap_con = ldap_connect($ldap_adr);
 if (!$ldap_con) {
-    redirect("login.html","LDAP connection failed");
+    redirect("login.html", "LDAP connection failed");
 }
 
 ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3); //we need this for some reason. otherwise LDAP_OPT_PROTOCOL_VERSION returns 17 for whatever reason
@@ -23,11 +23,11 @@ if ($ldap_bind) {
     session_start();
     $_SESSION["user"] = $user;
     audit_log($_SESSION["user"] . " logIN");
-    header("Location: main"); // this is one of those PHP things. this is a strict syntax we need for apache to properly redirect our program
+    header("Location: main"); //this is one of those PHP things. this is a strict syntax we need for apache to properly redirect our program
 } else {
     ldap_close($ldap_con);
     audit_log("Attempt to log into $user");
-    redirect("login","Invalid username and/or password");
+    redirect("login", "Invalid username and/or password");
 }
 
 function sanitize(&$data)
@@ -43,7 +43,8 @@ function redirect($site, $error)
     header("Location: $site?error=$error_msg");
 }
 
-function audit_log($message) {
+function audit_log($message)
+{
     $file = '/var/www/log.txt';
     $time_stamp = date('Y-m-d H:i:s');
     $log_message = $time_stamp . ' - ' . $message . PHP_EOL;

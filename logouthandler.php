@@ -7,7 +7,8 @@ session_destroy();
 
 header("Location: login");
 
-function audit_log($message) {
+function audit_log($message)
+{
     $file = '/var/www/log.txt';
     $timestamp = date('Y-m-d H:i:s');
     $logMessage = $timestamp . ' - ' . $message . PHP_EOL;
