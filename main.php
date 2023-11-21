@@ -30,7 +30,9 @@
 
                 <h1>File Management System</h1>
                 <form action="logouthandler" method="post">
-                    <input type="submit" class="btn" value="Logout">
+                    <?php
+                    echo '<input type="submit" class="btn" value="Logout ' . $_SESSION["user"] . '">';
+                    ?>
                 </form>
             </div>
         </div>

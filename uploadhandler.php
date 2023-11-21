@@ -46,11 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
 
     // move the file from the temporary directory to the user's directory
     if (move_uploaded_file($file_temp_path, $dest_path)) {
+        audit_log($_SESSION["user"] . " has uploaded " . $file_name . " to /home/" . $_SESSION["user"]);
         header("Location: main?status=uploadsuccess"); //we're refreshing the browser here. appending the entry with js is out of reach currently        
     } else {
         echo json_encode(['error' => 'There was some error moving the file to the upload directory.']);
     }
 } else {
     echo json_encode(['error' => 'No file was uploaded.']);
+}
+
+function audit_log($message) {
+    $file = '/var/www/log.txt';
+    $timestamp = date('Y-m-d H:i:s');
+    $logMessage = $timestamp . ' - ' . $message . PHP_EOL;
+
+    file_put_contents($file, $logMessage, FILE_APPEND | LOCK_EX);
 }
 ?>
