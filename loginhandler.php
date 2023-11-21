@@ -45,9 +45,9 @@ function redirect($site, $error)
 
 function audit_log($message) {
     $file = '/var/www/log.txt';
-    $timestamp = date('Y-m-d H:i:s');
-    $logMessage = $timestamp . ' - ' . $message . PHP_EOL;
+    $time_stamp = date('Y-m-d H:i:s');
+    $log_message = $time_stamp . ' - ' . $message . PHP_EOL;
 
-    file_put_contents($file, $logMessage, FILE_APPEND | LOCK_EX);
+    file_put_contents($file, $log_message, FILE_APPEND | LOCK_EX);
 }
 ?>

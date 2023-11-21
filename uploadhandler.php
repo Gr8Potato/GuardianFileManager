@@ -10,7 +10,7 @@ $user_dir = "/home/" . $_SESSION["user"];
 
 if (!file_exists($user_dir)) {
     if (!mkdir($user_dir, 0775, true)) {
-        echo json_encode(['error' => 'Failed to create directory.']);
+        header("Location: main?error=directory does not exist");
         exit;
     }
 }
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
 
     // check if there's any error with the file
     if ($error !== UPLOAD_ERR_OK) {
-        echo json_encode(['error' => 'File upload error code: ' . $error]);
+        header("Location: main?error=no file submitted");
         exit;
     }
 
@@ -46,16 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fileToUpload'])) {
 
     // move the file from the temporary directory to the user's directory
     if (move_uploaded_file($file_temp_path, $dest_path)) {
-        audit_log($_SESSION["user"] . " has uploaded " . $file_name . " to /home/" . $_SESSION["user"]);
-        header("Location: main?status=uploadsuccess"); //we're refreshing the browser here. appending the entry with js is out of reach currently        
+        audit_log($_SESSION["user"] . " UPLOAD " . $file_name . " to /home/" . $_SESSION["user"]);
+        header("Location: main?status=upload success"); //we're refreshing the browser here. appending the entry with js is out of reach currently        
     } else {
-        echo json_encode(['error' => 'There was some error moving the file to the upload directory.']);
+        header("Location: main?error=issue moving file to directory");
+        ;
     }
 } else {
-    echo json_encode(['error' => 'No file was uploaded.']);
+    header("Location: main?error=test");
 }
 
-function audit_log($message) {
+function audit_log($message)
+{
     $file = '/var/www/log.txt';
     $timestamp = date('Y-m-d H:i:s');
     $logMessage = $timestamp . ' - ' . $message . PHP_EOL;
