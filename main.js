@@ -49,7 +49,7 @@ function deleteFile(fileName, buttonElement) {
         },
         body: 'filename=' + encodeURIComponent(fileName)
     })
-    //gets response back in form of text (via php echo) and handles reporting
+        //gets response back in form of text (via php echo) and handles reporting
         .then(response => response.text())
         .then(text => {
             if (text.includes("File deleted")) {
@@ -64,9 +64,9 @@ function deleteFile(fileName, buttonElement) {
         .catch(error => console.error('Error:', error));
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.download-button').forEach(function(button) {
-        button.addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.download-button').forEach(function (button) {
+        button.addEventListener('click', function () {
             var fileName = this.getAttribute('data-filename');
             initiateDownload(fileName);
         });
@@ -77,9 +77,9 @@ function initiateDownload(fileName) {
     window.location.href = 'downloadhandler?filename=' + encodeURIComponent(fileName);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.preview-button').forEach(function(button) {
-        button.addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.preview-button').forEach(function (button) {
+        button.addEventListener('click', function () {
             const fileName = this.getAttribute('data-filename');
             createDynamicPreview(fileName);
         });
@@ -127,15 +127,18 @@ function createDynamicPreview(fileName) {
             break;
         default:
             previewContainer.innerText = 'Unsupported file type for preview.';
+            previewContainer.onclick = function () {
+                document.body.removeChild(previewContainer);
+            };
             document.body.appendChild(previewContainer);
             return;
     }
 
-    previewElement.onload = function() {
+    previewElement.onload = function () {
         console.log('Preview loaded for file:', fileName);
     };
 
-    previewElement.onerror = function() {
+    previewElement.onerror = function () {
         previewContainer.innerText = 'Unable to load preview.';
         console.error('Error loading preview for file:', fileName);
     };
@@ -143,7 +146,7 @@ function createDynamicPreview(fileName) {
     previewContainer.appendChild(previewElement);
 
     //this is how Discord handles their previews
-    previewContainer.onclick = function() {
+    previewContainer.onclick = function () {
         document.body.removeChild(previewContainer);
     };
 
