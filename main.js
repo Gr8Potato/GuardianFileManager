@@ -113,12 +113,11 @@ function createDynamicPreview(fileName) {
             previewElement.src = 'previewhandler?filename=' + encodeURIComponent(fileName);
             previewElement.style.maxWidth = '90%';
             previewElement.style.maxHeight = '90%';
-            previewElement.style.border = '3px solid white';
             break;
         case 'pdf':
         case 'txt':
             previewElement = document.createElement('iframe');
-            previewElement.src = 'previewhandler.php?filename=' + encodeURIComponent(fileName);
+            previewElement.src = 'previewhandler?filename=' + encodeURIComponent(fileName);
             previewElement.style.width = '80%';
             previewElement.style.height = '80vh';
             previewElement.style.border = '1px solid #ddd';
