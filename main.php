@@ -76,7 +76,7 @@
                 echo "<td>" . htmlspecialchars($file['name']) . "</td>";
                 echo "<td>" . $file['date'] . "</td>";
                 echo "<td>";
-                echo "<button><img src='Icons/eye.png' alt='Preview'></button>";
+                echo "<button class='preview-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/eye.png' alt='Preview'></button>";
                 echo "<button class='download-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/download.png' alt='Download'></button>";
                 echo "<button class='delete-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
                 echo "</td>";
