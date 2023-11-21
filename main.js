@@ -61,3 +61,16 @@ function deleteFile(fileName, buttonElement) {
         })
         .catch(error => console.error('Error:', error));
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.download-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var fileName = this.getAttribute('data-filename');
+            initiateDownload(fileName);
+        });
+    });
+});
+
+function initiateDownload(fileName) {
+    window.location.href = 'downloadhandler?filename=' + encodeURIComponent(fileName);
+}
