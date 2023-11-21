@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST['filename'])) {
     $file_name = $_POST['filename'];
     $user_dir = "/home/" . $_SESSION["user"];
-    $file_path = $user_dir . '/' . $filename;
+    $file_path = $user_dir . '/' . $file_name;
 
     if (file_exists($file_path)) {
         audit_log($_SESSION["user"] . " DELETED " . $file_name . " from /home/" . $_SESSION["user"]);
