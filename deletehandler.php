@@ -3,6 +3,13 @@ session_start();
 
 if (isset($_POST['filename'])) {
     $file_name = $_POST['filename'];
+    $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
+
+    if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
+        exit;
+    }
+
+
     $user_dir = "/home/" . $_SESSION["user"];
     $file_path = $user_dir . '/' . $file_name;
 

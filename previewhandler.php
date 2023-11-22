@@ -2,6 +2,15 @@
 session_start();
 
 if (isset($_GET['filename'])) {
+
+    $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
+    $file_name = $_GET['filename'];
+
+    if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
+        echo 'Permission denied.';
+        exit;
+    }
+
     $filename = $_GET['filename'];
     $user_dir = "/home/" . $_SESSION["user"];
     $file_path = $user_dir . '/' . $filename;

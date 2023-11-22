@@ -52,9 +52,9 @@ function deleteFile(fileName, buttonElement) {
         //gets response back in form of text (via php echo) and handles reporting
         .then(response => response.text())
         .then(text => {
+            const status_container = document.getElementById('status_container');
+            status_container.innerHTML = '';
             if (text.includes("File deleted")) {
-                const status_container = document.getElementById('status_container');
-                status_container.innerHTML = '';
                 const status_text = document.createTextNode("file deleted");
                 status_container.appendChild(status_text);
                 var row = buttonElement.closest('tr');
