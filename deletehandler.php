@@ -6,6 +6,7 @@ if (isset($_POST['filename'])) {
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
 
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
+        audit_log($_SESSION["user"] . " FAIL DELETE " . $file_name . " from /home/" . $_SESSION["user"]);
         exit;
     }
 
@@ -18,6 +19,7 @@ if (isset($_POST['filename'])) {
         unlink($file_path);
         echo "File deleted";
     } else {
+        audit_log($_SESSION["user"] . " FAIL DELETE " . $file_name . " from /home/" . $_SESSION["user"]);
         echo "File not found";
     }
 }
