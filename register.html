@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="Icons/lock.png">
     <script type="module" src="login.js"></script>
     <script defer nomodule></script>
-    <title>Login</title>
+    <title>Register</title>
 
 
 </head>
@@ -17,8 +17,8 @@
 
     <div class="container">
         <h1>File System Management</h1>
-        <form action="loginhandler" method="post">
-            <h1>Welcome!</h1>
+        <form action="registerhandler" method="post">
+            <h1>Registration</h1>
             <div class="form-group">
                 <label for="name">Username</label>
                 <input id="username" name="name" type="text" class="form-control" required>
@@ -28,8 +28,13 @@
                 <input id="password" name="pass" type="password" class="form-control" autocomplete="new-password"
                     required>
             </div>
-            <input type="submit" class="btn" value="Login">
+            <input type="submit" class="btn" value="Register">
         </form>
+        <div class="container">
+            <form action="login" method="post">
+                <input type="submit" class="text" value="Go back to login">
+            </form>
+        </div>
     </div>
     <div id="errorMessageContainer">
 
