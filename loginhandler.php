@@ -12,7 +12,7 @@ $ldap_usr = "uid=$user,ou=People,dc=nodomain";
 //connect to ldap
 $ldap_con = ldap_connect($ldap_adr);
 if (!$ldap_con) {
-    redirect("login.html", "LDAP connection failed");
+    redirect("login", "LDAP connection failed");
 }
 
 ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3); //we need this for some reason. otherwise LDAP_OPT_PROTOCOL_VERSION returns 17 for whatever reason
