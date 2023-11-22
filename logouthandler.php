@@ -1,7 +1,7 @@
 <?php
 session_start(); // we need to do this to access the session variables
 
-audit_log($_SESSION["user"] . " logOUT");
+audit_log($_SESSION["user"] . " LOGOUT");
 
 session_destroy();
 

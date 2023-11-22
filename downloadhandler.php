@@ -4,9 +4,11 @@ session_start();
 if (isset($_GET['filename'])) {
 
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
+
     $file_name = $_GET['filename'];
 
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
+        audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
         header("Location: main");
         exit;
     }
@@ -25,6 +27,7 @@ if (isset($_GET['filename'])) {
         readfile($file_path);
         audit_log($_SESSION["user"] . " DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
     } else {
+        audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
         echo "File not found";
     }
 }

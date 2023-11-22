@@ -22,11 +22,11 @@ $ldap_bind = ldap_bind($ldap_con, $ldap_usr, $ldap_pass);
 if ($ldap_bind) {
     session_start();
     $_SESSION["user"] = $user;
-    audit_log($_SESSION["user"] . " logIN");
+    audit_log($_SESSION["user"] . " LOGIN");
     header("Location: main"); //this is one of those PHP things. this is a strict syntax we need for apache to properly redirect our program
 } else {
     ldap_close($ldap_con);
-    audit_log("Attempt to log into $user");
+    audit_log("FAIL LOGIN $user");
     redirect("login", "Invalid username and/or password");
 }
 

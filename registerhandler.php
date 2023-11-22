@@ -15,12 +15,15 @@ if ($ldap_con) {
     ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
     $r = ldap_bind($ldap_con, "cn=admin,dc=nodomain", "admin");
 
+    //checks for used names
     $search = ldap_search($ldap_con, "ou=People,dc=nodomain", "(uid=$user)");
     $entries = ldap_get_entries($ldap_con, $search);
     if ($entries["count"] > 0) {
+        audit_log("FAIL CREATE " . $_POST["name"]);
         redirect("login", "User already exists");
     } else {
 
+        //fill out mandatory forms
         $ldaprecord['cn'] = $user;
         $ldaprecord['uid'] = $user;
         $ldaprecord['sn'] = "AUTOMATED";
@@ -28,15 +31,19 @@ if ($ldap_con) {
 
         $r = ldap_add($ldap_con, $ldap_usr, $ldaprecord);
         if (!$r) {
+            audit_log("FAIL CREATE " . $_POST["name"]);
             redirect("login", "Failed to make account for " . $_POST["name"]);
 
         }
 
+        //have to handle password seperately
         ldap_exop_passwd($ldap_con, $ldap_usr, null, $ldap_pass);
         mkdir("/home/" . $user);
+        audit_log("CREATED $user");
         redirect("login", "Successfully created account");
     }
 } else {
+    audit_log("FAIL CREATE " . $_POST["name"]);
     redirect("login", "LDAP connection failed");
 }
 

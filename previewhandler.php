@@ -8,6 +8,7 @@ if (isset($_GET['filename'])) {
 
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
         echo 'Permission denied.';
+        audit_log($_SESSION["user"] . " FAILED to PREVIEW " . $_GET['filename']);
         exit;
     }
 
@@ -23,26 +24,39 @@ if (isset($_GET['filename'])) {
             case 'jpeg':
             case 'png':
             case 'gif':
+                audit_log($_SESSION["user"] . " PREVIEW " . $_GET['filename']);
                 header('Content-Type: image/' . $file_extension);
                 readfile($file_path);
                 break;
             case 'pdf':
+                audit_log($_SESSION["user"] . " PREVIEW " . $_GET['filename']);
                 header('Content-Type: application/pdf');
                 readfile($file_path);
                 break;
             case 'txt':
+                audit_log($_SESSION["user"] . " PREVIEW " . $_GET['filename']);
                 header('Content-Type: text/plain');
                 readfile($file_path);
                 break;
             default:
+                audit_log($_SESSION["user"] . " FAILED PREVIEW " . $_GET['filename']);
                 echo 'Unsupported file type for preview.';
         }
     } else {
-        http_response_code(404);
+        audit_log($_SESSION["user"] . " FAILED PREVIEW " . $_GET['filename']);
         echo 'File not found.';
     }
 } else {
-    http_response_code(400);
+    audit_log($_SESSION["user"] . " FAILED PREVIEW " . $_GET['filename']);
     echo 'No filename provided.';
+}
+
+function audit_log($message)
+{
+    $file = '/var/www/log.txt';
+    $time_stamp = date('Y-m-d H:i:s');
+    $log_message = $time_stamp . ' - ' . $message . PHP_EOL;
+
+    file_put_contents($file, $log_message, FILE_APPEND | LOCK_EX);
 }
 ?>
