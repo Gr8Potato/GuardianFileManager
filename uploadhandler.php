@@ -10,6 +10,7 @@ if (isset($_FILES['filesToUpload'])) {
         $file_ext = pathinfo($original_file_name, PATHINFO_EXTENSION);
         $html_or_php = false;
         if ($file_ext == 'html' || $file_ext == 'php') {
+            $html_or_php = true;
             continue;
         }
         $file_no_ext = pathinfo($original_file_name, PATHINFO_FILENAME);
@@ -30,22 +31,27 @@ if (isset($_FILES['filesToUpload'])) {
                 // Log each successful file upload
                 audit_log($_SESSION["user"] . " UPLOADED " . $new_file . " to /home/" . $_SESSION["user"]);
                 header("Location: main?error=file(s) uploaded successfully");
+                exit;
             } else {
                 header("Location: main?error=file upload error");
+                exit;
             }
         } else {
             header("Location: main?error=no file(s) uploaded");
+            exit;
         }
     }
     if ($html_or_php && (count($_FILES["filesToUpload"]) == 1)) {
-        header("Location: main?error=no file(s) uploaded");
-        #echo "touch";
+        header("Location: main?error=unsupported file");
+        exit;
     }
 } else {
-    cup:
     header("Location: main?error=no file(s) uploaded");
+    exit;
+
 }
-header("Location: main?error=file type not supported");
+header("Location: main?error=file upload error");
+exit;
 
 function audit_log($message)
 {
