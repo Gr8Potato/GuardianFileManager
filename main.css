@@ -6,20 +6,12 @@ list-style-type: none;
   overflow: hidden;
   background-color: #333;
 } */
-
-.container {
-    margin: auto;
-    width: 500px;
-    max-width: 90%;
-    text-align: center;
-
-}
 .header {
-    position: absolute;
+    position: fixed;
     left: 0;
+    right: 0;
     top: 0;
     height: 70px;
-    width:1920px;
     line-height: 70px;
     cursor: default;
     z-index: 2;
@@ -27,14 +19,6 @@ list-style-type: none;
     background-color: #282B30;
     padding-right: 20px;
 }
-
-.div {
-    background-size: 100% 100%;
-    height: 1080px;
-    overflow: hidden;
-    position: relative;
-    width: 1864px;
-  }
 
 .titleHeader {
     display: flex;
@@ -51,9 +35,11 @@ list-style-type: none;
 
 .titleHeader h1 {
     margin: 0;
+    /* Resets any margin on the h1 */
     flex-grow: 1;
+    /* Allows h1 to grow and take available space */
     text-align: center;
-
+    /* Centers the text inside h1 */
 }
 
 * {
@@ -88,22 +74,17 @@ body {
 }
 
 table {
-    margin-top:50px;
-    padding-top:100px;
     width: 100%;
     border-collapse: collapse;
-    text-align: center;
 }
 
 th,
 td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
-icons .td{
 
-}
 th {
     background-color: #f2f2f2;
 }
