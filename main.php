@@ -23,7 +23,8 @@
             <div class="titleHeader">
 
                 <form id="upload_form" action="uploadhandler" method="post" enctype="multipart/form-data">
-                    <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple >
+                    Select file to upload:
+                    <input type="file" name="filesToUpload[]" id="fileToUpload" multiple>
                     <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
                 </form>
                 <div id="status_container"></div>
@@ -38,7 +39,6 @@
         </div>
     </header>
 
-    <div class="container"> 
     <table>
         <thead>
             <tr>
@@ -85,7 +85,6 @@
             ?>
         </tbody>
     </table>
-    </div>
 </body>
 
 </html>
