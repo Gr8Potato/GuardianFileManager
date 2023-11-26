@@ -16,7 +16,7 @@ list-style-type: none;
 }
 .header {
     position: absolute;
-    left: 00;
+    left: 0;
     top: 0;
     height: 70px;
     width:1920px;
