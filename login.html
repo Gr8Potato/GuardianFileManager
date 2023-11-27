@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="Icons/lock.png">
     <script type="module" src="login.js"></script>
     <script defer nomodule></script>
-    <title>Login</title>
+    <title>Guardian Login</title>
 
 
 </head>
@@ -16,9 +16,10 @@
 <body>
 
     <div class="container">
-        <h1>File System Management</h1>
+        <h1>Guardian File Manager</h1>
         <form action="loginhandler" method="post">
-            <h1>Login</h1>
+            <h2>Login</h2>
+            <br>
             <div class="form-group">
                 <label for="name">Username</label>
                 <input id="username" name="name" type="text" class="form-control" required>
@@ -33,6 +34,7 @@
             </div>
             <input type="submit" class="btn" value="Login">
         </form>
+         <br>
         <form action="register">
             <input type="submit" class="btn" value="Register">
         </form>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="main.css?foo">
     <link rel="icon" type="image/x-icon" href="Icons/lock.png">
     <script type="module" src="main.js"></script>
-    <title>File Management System</title>
+    <title>Guardian File Manager</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 </form>
                 <div id="status_container"></div>
 
-                <h1>File Management System</h1>
+                <h1>Guardian File Manager</h1>
                 <form action="logouthandler" method="post">
                     <?php
                     echo '<input type="submit" class="btn" value="Logout ' . $_SESSION["user"] . '">';
