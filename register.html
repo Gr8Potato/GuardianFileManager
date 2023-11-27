@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css?foo">
     <link rel="icon" type="image/x-icon" href="Icons/lock.png">
     <script type="module" src="login.js"></script>
     <script defer nomodule></script>
@@ -28,16 +28,14 @@
                 <input id="password" name="pass" type="password" class="form-control" autocomplete="new-password"
                     required>
             </div>
+            <div id="errorMessageContainer">
+
+            </div>
             <input type="submit" class="btn" value="Register">
         </form>
-        <div class="container">
-            <form action="login" method="post">
-                <input type="submit" class="text" value="Go back to login">
-            </form>
-        </div>
-    </div>
-    <div id="errorMessageContainer">
-
+        <form action="login">
+            <input type="submit" class="btn" value="Go back to login">
+        </form>
     </div>
 
 </body>

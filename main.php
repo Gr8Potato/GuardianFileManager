@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="main.css?foo">
     <link rel="icon" type="image/x-icon" href="Icons/lock.png">
     <script type="module" src="main.js"></script>
     <title>File Management System</title>
@@ -75,7 +75,7 @@
                     echo "<tr id='file" . htmlspecialchars($file['id']) . "'>";
                     echo "<td>" . htmlspecialchars($file['name']) . "</td>";
                     echo "<td>" . $file['date'] . "</td>";
-                    echo "<td>";
+                    echo '<td class="actions">';
                     echo "<button class='preview-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/eye.png' alt='Preview'></button>";
                     echo "<button class='download-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/download.png' alt='Download'></button>";
                     echo "<button class='delete-button' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
