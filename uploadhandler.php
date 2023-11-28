@@ -7,12 +7,7 @@ if (isset($_FILES['filesToUpload'])) {
     foreach ($_FILES['filesToUpload']['name'] as $key => $name) {
         $temp_dir = $_FILES['filesToUpload']['tmp_name'][$key];
         $original_file_name = basename($_FILES['filesToUpload']['name'][$key]);
-        $file_ext = pathinfo($original_file_name, PATHINFO_EXTENSION);
-        $html_or_php = false;
-        if ($file_ext == 'html' || $file_ext == 'php') {
-            header("Location: main?error=unsupported file detected, not all files were uploaded");
-            exit;
-        }
+        sanitize($original_file_name);
         $file_no_ext = pathinfo($original_file_name, PATHINFO_FILENAME);
         $destination = $user_dir . '/' . $original_file_name;
 
@@ -46,6 +41,13 @@ if (isset($_FILES['filesToUpload'])) {
 }
 header("Location: main?error=file(s) uploaded successfully");
 exit;
+
+function sanitize(&$data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+}
 
 function audit_log($message)
 {
