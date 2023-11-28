@@ -74,7 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function initiateDownload(fileName) {
-    window.location.href = 'downloadhandler?filename=' + encodeURIComponent(fileName);
+    var isHtmlOrPhp = fileName.endsWith('.html') || fileName.endsWith('.php');
+    var fileWithoutExtension = isHtmlOrPhp ? fileName.slice(0, fileName.lastIndexOf('.')) : fileName;
+    var fileTypeParam = isHtmlOrPhp ? '&type=' + (fileName.endsWith('.html') ? 'html' : 'php') : '';
+    var downloadUrl = 'downloadhandler?filename=' + encodeURIComponent(fileWithoutExtension) + fileTypeParam;
+    window.location.href = downloadUrl;
 }
 
 document.addEventListener('DOMContentLoaded', function () {

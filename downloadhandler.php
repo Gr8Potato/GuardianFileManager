@@ -6,7 +6,13 @@ if (isset($_GET['filename'])) {
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
 
     $file_name = $_GET['filename'];
-
+    sanitize($file_name);
+    $file_type = isset($_GET['type']) ? $_GET['type'] : '';
+    if ($file_type === 'html') {
+        $file_name .= '.html';
+    } elseif ($file_type === 'php') {
+        $file_name .= '.php';
+    }
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
         audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
         header("Location: main");
@@ -30,6 +36,13 @@ if (isset($_GET['filename'])) {
         audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
         echo "File not found";
     }
+}
+
+function sanitize(&$data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
 }
 
 function audit_log($message)

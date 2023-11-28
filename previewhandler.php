@@ -5,7 +5,7 @@ if (isset($_GET['filename'])) {
 
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
     $file_name = $_GET['filename'];
-
+    
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
         echo 'Permission denied.';
         audit_log($_SESSION["user"] . " FAILED to PREVIEW " . $_GET['filename']);
@@ -13,6 +13,7 @@ if (isset($_GET['filename'])) {
     }
 
     $filename = $_GET['filename'];
+    sanitize($filename);
     $user_dir = "/home/" . $_SESSION["user"];
     $file_path = $user_dir . '/' . $filename;
 
@@ -49,6 +50,13 @@ if (isset($_GET['filename'])) {
 } else {
     audit_log($_SESSION["user"] . " FAILED PREVIEW " . $_GET['filename']);
     echo 'No filename provided.';
+}
+
+function sanitize(&$data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
 }
 
 function audit_log($message)
