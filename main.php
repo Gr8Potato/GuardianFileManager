@@ -39,17 +39,17 @@
     <div class="container">
         <h1>Personal Files</h1>
         <div class="uploadstuff">
-        <form id="upload_form" action="uploadhandler" method="post" enctype="multipart/form-data">
-        <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple>
-        <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
-        <!-- Sort buttons -->
-        <input type="button" id="sort_name_asc" class="btn" value="Sort by Name ↑">
-        <input type="button" id="sort_name_desc" class="btn" value="Sort by Name ↓">
-        <input type="button" id="sort_date_asc" class="btn" value="Sort by Date ↑">
-        <input type="button" id="sort_date_desc" class="btn" value="Sort by Date ↓">
-    </form>
-    <br>
-            <table>
+            <form id="upload_form" action="uploadhandler" method="post" enctype="multipart/form-data">
+                <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple>
+                <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
+                <!-- Sort buttons -->
+                <input type="button" id="sort_name_asc_p" class="btn" value="Sort by Name ↑">
+                <input type="button" id="sort_name_desc_p" class="btn" value="Sort by Name ↓">
+                <input type="button" id="sort_date_asc_p" class="btn" value="Sort by Date ↑">
+                <input type="button" id="sort_date_desc_p" class="btn" value="Sort by Date ↓">
+            </form>
+            <br>
+            <table id="personaltable">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -101,7 +101,7 @@
                         echo '<td class="actions">';
                         echo "<button class='preview-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/eye.png' alt='Preview'></button>";
                         echo "<button class='download-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/download.png' alt='Download'></button>";
-                            echo "<button class='delete-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
+                        echo "<button class='delete-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -122,13 +122,17 @@
 
         <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple>
         <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
+        <input type="button" id="sort_name_asc_s" class="btn" value="Sort by Name ↑">
+        <input type="button" id="sort_name_desc_s" class="btn" value="Sort by Name ↓">
+        <input type="button" id="sort_date_asc_s" class="btn" value="Sort by Date ↑">
+        <input type="button" id="sort_date_desc_s" class="btn" value="Sort by Date ↓">
     </form>
     <br>
         </div>';
             }
 
             echo '
-        <table>
+        <table id="sharetable">
             <thead>
                 <tr>
                     <th>Name</th>

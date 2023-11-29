@@ -1,5 +1,4 @@
 <?php
-
 $user = $_POST["name"];
 $ldap_pass = $_POST["pass"];
 
