@@ -42,13 +42,14 @@
             <form id="upload_form" action="uploadhandler" method="post" enctype="multipart/form-data">
                 <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple>
                 <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
-                <!-- Sort buttons -->
-                <input type="button" id="sort_name_asc_p" class="btn" value="Sort by Name ↑">
+            </form>
+            <br>
+            <input type="button" id="sort_name_asc_p" class="btn" value="Sort by Name ↑">
                 <input type="button" id="sort_name_desc_p" class="btn" value="Sort by Name ↓">
                 <input type="button" id="sort_date_asc_p" class="btn" value="Sort by Date ↑">
                 <input type="button" id="sort_date_desc_p" class="btn" value="Sort by Date ↓">
-            </form>
-            <br>
+                <br>
+                <br>
             <table id="personaltable">
                 <thead>
                     <tr>
@@ -122,16 +123,19 @@
 
         <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple>
         <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
-        <input type="button" id="sort_name_asc_s" class="btn" value="Sort by Name ↑">
-        <input type="button" id="sort_name_desc_s" class="btn" value="Sort by Name ↓">
-        <input type="button" id="sort_date_asc_s" class="btn" value="Sort by Date ↑">
-        <input type="button" id="sort_date_desc_s" class="btn" value="Sort by Date ↓">
     </form>
     <br>
         </div>';
             }
 
             echo '
+            <input type="button" id="sort_name_asc_s" class="btn" value="Sort by Name ↑">
+            <input type="button" id="sort_name_desc_s" class="btn" value="Sort by Name ↓">
+            <input type="button" id="sort_date_asc_s" class="btn" value="Sort by Date ↑">
+            <input type="button" id="sort_date_desc_s" class="btn" value="Sort by Date ↓">
+            <br>
+            <br>
+
         <table id="sharetable">
             <thead>
                 <tr>
