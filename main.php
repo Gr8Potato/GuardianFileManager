@@ -98,7 +98,7 @@
                         echo '<td class="actions">';
                         echo "<button class='preview-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/eye.png' alt='Preview'></button>";
                         echo "<button class='download-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/download.png' alt='Download'></button>";
-                        if ($jobTitle !== "foo") {
+                        if ($jobTitle !== "nodel") {
                             echo "<button class='delete-button' data-filetype='personal' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
                         }
                         echo "</td>";
@@ -112,15 +112,21 @@
         if ($desc == "guardian") {
             echo "<h1>Shared Files</h1>";
             echo '
-    <div class="container" id="shared">
+    <div class="container" id="shared">';
+
+            if ($jobTitle !== 'nodel') {
+                echo '
     <div class="uploadstuff">
     <form id="upload_form" action="shareduploadhandler" method="post" enctype="multipart/form-data">
 
         <input class="btn" type="file" name="filesToUpload[]" id="fileToUpload" multiple>
         <input id="upload_button" type="submit" class="btn" value="Upload File" name="submit">
-    </form>
-    <br>
-</div>
+    </form>';
+            }
+
+            echo '
+    </div>
+
         <table>
             <thead>
                 <tr>
@@ -149,18 +155,18 @@
                 echo '<td class="actions">';
                 echo "<button class='preview-button' data-filetype='shared' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/eye.png' alt='Preview'></button>";
                 echo "<button class='download-button' data-filetype='shared' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/download.png' alt='Download'></button>";
-                if ($jobTitle !== "foo") {
+                if ($jobTitle !== "nodel") {
                     echo "<button class='delete-button' data-filetype='shared' data-filename='" . htmlspecialchars($file['name']) . "'><img src='Icons/trash.png' alt='Delete'></button>";
                 }
                 echo "</td>";
                 echo "</tr>";
             }
-        }
-        echo '
+            echo '
 </tbody>
 </table>
 </div>
 ';
+        }
         ?>
 </body>
 
