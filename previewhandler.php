@@ -1,20 +1,32 @@
 <?php
 session_start();
 
-if (isset($_GET['filename'])) {
+if (isset($_GET['filename'], $_GET['filetype'])) {
+    $filename = $_GET['filename'];
+    $filetype = $_GET['filetype'];
 
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
-    $file_name = $_GET['filename'];
-    
+
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
         echo 'Permission denied.';
         audit_log($_SESSION["user"] . " FAILED to PREVIEW " . $_GET['filename']);
         exit;
     }
-
-    $filename = $_GET['filename'];
+    
     sanitize($filename);
-    $user_dir = "/home/" . $_SESSION["user"];
+    sanitize($filetype);
+
+    $user_dir;
+    if ($filetype === 'personal') {
+        $user_dir = "/home/" . $_SESSION["user"];
+    } elseif ($filetype === 'shared') {
+        $user_dir = "/home/shared";
+    }
+    else{
+        echo"Improper request format\n";
+        exit;
+    }
+
     $file_path = $user_dir . '/' . $filename;
 
     if (file_exists($file_path)) {

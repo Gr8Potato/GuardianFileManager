@@ -10,8 +10,29 @@ body {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    font-family: Arial, Helvetica, sans-serif;
+    /* This ensures the child elements are pushed to the ends */
     align-items: center;
+    /* This vertically centers the child elements */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.titleHeader {
+    text-align: center;
+    /* This centers the title text */
+    flex-grow: 1;
+    /* This allows the title to occupy the available space */
+}
+
+.logoutstuff {
+    text-align: right;
+}
+
+.uploadstuff {
+    text-align: left;
+}
+
+#status_container{
+    text-align: left;
 }
 
 .btn {
@@ -22,7 +43,7 @@ body {
     border-radius: 5px;
 }
 
-.btn:hover {    
+.btn:hover {
     opacity: 0.7;
     /* Button hover effect */
 }
