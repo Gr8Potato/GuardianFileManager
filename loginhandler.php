@@ -6,7 +6,7 @@ $ldap_pass = $_POST["pass"];
 sanitize($user);
 sanitize($ldap_pass);
 
-$ldap_adr = "ldap://test-vm";
+$ldap_adr = "ldaps://test-vm";
 $ldap_usr = "uid=$user,ou=People,dc=nodomain";
 
 //connect to ldap

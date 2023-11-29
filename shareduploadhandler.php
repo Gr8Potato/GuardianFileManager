@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_FILES['filesToUpload'])) {
-    $user_dir = "/home/" . $_SESSION["user"];
+    $user_dir = "/home/shared";
 
     foreach ($_FILES['filesToUpload']['name'] as $key => $name) {
         $temp_dir = $_FILES['filesToUpload']['tmp_name'][$key];

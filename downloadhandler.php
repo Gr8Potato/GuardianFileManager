@@ -6,20 +6,30 @@ if (isset($_GET['filename'])) {
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
 
     $file_name = $_GET['filename'];
+    $filetype = $_GET['filetype'];
+
     sanitize($file_name);
+    sanitize($filetype);
+    
     $file_type = isset($_GET['type']) ? $_GET['type'] : '';
-    if ($file_type === 'html') {
-        $file_name .= '.html';
-    } elseif ($file_type === 'php') {
-        $file_name .= '.php';
+
+    $user_dir;
+    if ($filetype === 'personal') {
+        $user_dir = "/home/" . $_SESSION["user"];
+    } elseif ($filetype === 'shared') {
+        $user_dir = "/home/shared";
     }
+    else{
+        echo"Improper request format\n";
+        exit;
+    }
+
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
-        audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
+        audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from " . $user_dir);
         header("Location: main");
         exit;
     }
 
-    $user_dir = "/home/" . $_SESSION["user"];
     $file_path = $user_dir . '/' . $file_name;
 
     if (file_exists($file_path)) {
@@ -31,9 +41,9 @@ if (isset($_GET['filename'])) {
         header('Pragma: public');
         header('Content-Length: ' . filesize($file_path));
         readfile($file_path);
-        audit_log($_SESSION["user"] . " DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
+        audit_log($_SESSION["user"] . " DOWNLOAD " . $file_name . " from " . $user_dir);
     } else {
-        audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from /home/" . $_SESSION["user"]);
+        audit_log($_SESSION["user"] . " FAIL DOWNLOAD " . $file_name . " from " . $user_dir);
         echo "File not found";
     }
 }

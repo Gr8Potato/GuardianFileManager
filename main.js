@@ -36,18 +36,19 @@ function sort_by_file_name() {
 document.querySelectorAll('.delete-button').forEach(function (button) {
     button.addEventListener('click', function () {
         var fileName = this.getAttribute('data-filename');
-        deleteFile(fileName, this);
+        var fileType = this.getAttribute('data-filetype'); // Ensure your buttons have this attribute
+        deleteFile(fileName, fileType, this);
     });
 });
 
 
-function deleteFile(fileName, buttonElement) {
+function deleteFile(fileName, fileType, buttonElement) {
     fetch('deletehandler', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'filename=' + encodeURIComponent(fileName)
+        body: 'filename=' + encodeURIComponent(fileName) + '&filetype=' + encodeURIComponent(fileType)
     })
         //gets response back in form of text (via php echo) and handles reporting
         .then(response => response.text())
@@ -68,29 +69,27 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.download-button').forEach(function (button) {
         button.addEventListener('click', function () {
             var fileName = this.getAttribute('data-filename');
-            initiateDownload(fileName);
+            var fileType = this.getAttribute('data-filetype');
+            initiateDownload(fileName, fileType);
         });
     });
 });
 
-function initiateDownload(fileName) {
-    var isHtmlOrPhp = fileName.endsWith('.html') || fileName.endsWith('.php');
-    var fileWithoutExtension = isHtmlOrPhp ? fileName.slice(0, fileName.lastIndexOf('.')) : fileName;
-    var fileTypeParam = isHtmlOrPhp ? '&type=' + (fileName.endsWith('.html') ? 'html' : 'php') : '';
-    var downloadUrl = 'downloadhandler?filename=' + encodeURIComponent(fileWithoutExtension) + fileTypeParam;
-    window.location.href = downloadUrl;
+function initiateDownload(fileName, fileType) {
+    window.location.href = "downloadhandler?filename=" + encodeURIComponent(fileName) + '&filetype=' + encodeURIComponent(fileType);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.preview-button').forEach(function (button) {
         button.addEventListener('click', function () {
             const fileName = this.getAttribute('data-filename');
-            createDynamicPreview(fileName);
+            const fileType = this.getAttribute('data-filetype');
+            createDynamicPreview(fileName, fileType);
         });
     });
 });
 
-function createDynamicPreview(fileName) {
+function createDynamicPreview(fileName, type) {
     //setting a generic container to store images/text in
     const previewContainer = document.createElement('div');
     previewContainer.id = 'dynamicPreview';
@@ -114,14 +113,14 @@ function createDynamicPreview(fileName) {
         case 'png':
         case 'gif':
             previewElement = new Image();
-            previewElement.src = 'previewhandler?filename=' + encodeURIComponent(fileName);
+            previewElement.src = 'previewhandler?filename=' + encodeURIComponent(fileName) + "&filetype=" + type;
             previewElement.style.maxWidth = '90%';
             previewElement.style.maxHeight = '90%';
             break;
         case 'pdf':
         case 'txt':
             previewElement = document.createElement('iframe');
-            previewElement.src = 'previewhandler?filename=' + encodeURIComponent(fileName);
+            previewElement.src = 'previewhandler?filename=' + encodeURIComponent(fileName) + "&filetype=" + type;
             previewElement.style.width = '80%';
             previewElement.style.height = '80vh';
             previewElement.style.border = '1px solid #ddd';

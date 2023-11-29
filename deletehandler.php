@@ -3,23 +3,25 @@ session_start();
 
 if (isset($_POST['filename'])) {
     $file_name = $_POST['filename'];
+    $filetype = $_POST['filetype'];
+
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
 
+
+    $user_dir = $filetype === 'personal' ? "/home/" . $_SESSION["user"] : "/home/shared";
+    $file_path = $user_dir . '/' . $file_name;
+
     if (preg_match('/\.\.(\/|\\\\)/', $filename) || in_array($file_name, $exclude)) {
-        audit_log($_SESSION["user"] . " FAIL DELETE " . $file_name . " from /home/" . $_SESSION["user"]);
+        audit_log($_SESSION["user"] . " FAIL DELETE " . $file_name . " from " . $user_dir);
         exit;
     }
 
-
-    $user_dir = "/home/" . $_SESSION["user"];
-    $file_path = $user_dir . '/' . $file_name;
-
     if (file_exists($file_path)) {
-        audit_log($_SESSION["user"] . " DELETED " . $file_name . " from /home/" . $_SESSION["user"]);
+        audit_log($_SESSION["user"] . " DELETED " . $file_name . " from " . $user_dir);
         unlink($file_path);
         echo "File deleted";
     } else {
-        audit_log($_SESSION["user"] . " FAIL DELETE " . $file_name . " from /home/" . $_SESSION["user"]);
+        audit_log($_SESSION["user"] . " FAIL DELETE " . $file_name . " from " . $user_dir);
         echo "File not found";
     }
 }
