@@ -157,8 +157,8 @@ function createDynamicPreview(fileName, type) {
 }
 
 // sort by name ascending
-function sortByNameAsc() {
-    const table = document.querySelector('table tbody');
+function sortByNameAsc(tableId) {
+    const table = document.querySelector(`#${tableId} tbody`);
     let rows = Array.from(table.rows);
 
     rows.sort((a, b) => a.cells[0].textContent.trim().localeCompare(b.cells[0].textContent.trim()));
@@ -167,8 +167,8 @@ function sortByNameAsc() {
 }
 
 // sort by name descending
-function sortByNameDesc() {
-    const table = document.querySelector('table tbody');
+function sortByNameDesc(tableId) {
+    const table = document.querySelector(`#${tableId} tbody`);
     let rows = Array.from(table.rows);
 
     rows.sort((a, b) => b.cells[0].textContent.trim().localeCompare(a.cells[0].textContent.trim()));
@@ -177,8 +177,8 @@ function sortByNameDesc() {
 }
 
 //sort by date ascending
-function sortByDateAsc() {
-    const table = document.querySelector('table tbody');
+function sortByDateAsc(tableId) {
+    const table = document.querySelector(`#${tableId} tbody`);
     let rows = Array.from(table.rows);
 
     rows.sort((a, b) => new Date(a.cells[1].textContent.trim()) - new Date(b.cells[1].textContent.trim()));
@@ -187,8 +187,8 @@ function sortByDateAsc() {
 }
 
 // sort by date descending
-function sortByDateDesc() {
-    const table = document.querySelector('table tbody');
+function sortByDateDesc(tableId) {
+    const table = document.querySelector(`#${tableId} tbody`);
     let rows = Array.from(table.rows);
 
     rows.sort((a, b) => new Date(b.cells[1].textContent.trim()) - new Date(a.cells[1].textContent.trim()));
@@ -197,8 +197,28 @@ function sortByDateDesc() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('sort_name_asc').addEventListener('click', sortByNameAsc);
-    document.getElementById('sort_name_desc').addEventListener('click', sortByNameDesc);
-    document.getElementById('sort_date_asc').addEventListener('click', sortByDateAsc);
-    document.getElementById('sort_date_desc').addEventListener('click', sortByDateDesc);
-});
+        document.getElementById('sort_name_asc_p').addEventListener('click', function () {
+            sortByNameAsc('personaltable');
+        });
+        document.getElementById('sort_name_desc_p').addEventListener('click', function () {
+            sortByNameDesc('personaltable');
+        });
+        document.getElementById('sort_date_asc_p').addEventListener('click', function () {
+            sortByDateAsc('personaltable');
+        });
+        document.getElementById('sort_date_desc_p').addEventListener('click', function () {
+            sortByDateDesc('personaltable');
+        });
+        document.getElementById('sort_name_asc_s').addEventListener('click', function () {
+            sortByNameAsc('sharetable');
+        });
+        document.getElementById('sort_name_desc_s').addEventListener('click', function () {
+            sortByNameDesc('sharetable');
+        });
+        document.getElementById('sort_date_asc_s').addEventListener('click', function () {
+            sortByDateAsc('sharetable');
+        });
+        document.getElementById('sort_date_desc_s').addEventListener('click', function () {
+            sortByDateDesc('sharetable');
+        });
+    });
