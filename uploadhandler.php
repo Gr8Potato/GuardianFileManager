@@ -9,6 +9,7 @@ if (isset($_FILES['filesToUpload'])) {
         $original_file_name = basename($_FILES['filesToUpload']['name'][$key]);
         sanitize($original_file_name);
         $file_no_ext = pathinfo($original_file_name, PATHINFO_FILENAME);
+        $file_ext = pathinfo($original_file_name, PATHINFO_EXTENSION);  // Get the file extension
         $destination = $user_dir . '/' . $original_file_name;
 
         $counter = 1;
