@@ -155,3 +155,50 @@ function createDynamicPreview(fileName, type) {
 
     document.body.appendChild(previewContainer);
 }
+
+// sort by name ascending
+function sortByNameAsc() {
+    const table = document.querySelector('table tbody');
+    let rows = Array.from(table.rows);
+
+    rows.sort((a, b) => a.cells[0].textContent.trim().localeCompare(b.cells[0].textContent.trim()));
+
+    rows.forEach(row => table.appendChild(row));
+}
+
+// sort by name descending
+function sortByNameDesc() {
+    const table = document.querySelector('table tbody');
+    let rows = Array.from(table.rows);
+
+    rows.sort((a, b) => b.cells[0].textContent.trim().localeCompare(a.cells[0].textContent.trim()));
+
+    rows.forEach(row => table.appendChild(row));
+}
+
+//sort by date ascending
+function sortByDateAsc() {
+    const table = document.querySelector('table tbody');
+    let rows = Array.from(table.rows);
+
+    rows.sort((a, b) => new Date(a.cells[1].textContent.trim()) - new Date(b.cells[1].textContent.trim()));
+
+    rows.forEach(row => table.appendChild(row));
+}
+
+// sort by date descending
+function sortByDateDesc() {
+    const table = document.querySelector('table tbody');
+    let rows = Array.from(table.rows);
+
+    rows.sort((a, b) => new Date(b.cells[1].textContent.trim()) - new Date(a.cells[1].textContent.trim()));
+
+    rows.forEach(row => table.appendChild(row));
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('sort_name_asc').addEventListener('click', sortByNameAsc);
+    document.getElementById('sort_name_desc').addEventListener('click', sortByNameDesc);
+    document.getElementById('sort_date_asc').addEventListener('click', sortByDateAsc);
+    document.getElementById('sort_date_desc').addEventListener('click', sortByDateDesc);
+});
