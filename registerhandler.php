@@ -4,6 +4,7 @@ $user = $_POST["name"];
 $ldap_pass = $_POST["pass"];
 
 sanitize($user);
+$user = strtolower($user);
 sanitize($ldap_pass);
 
 $ldap_adr = "ldaps://test-vm";
