@@ -4,12 +4,12 @@ This was a little project I put together for my LSU Intro to Cybersecurity class
 ## Features
 1. Account Registration
    - Guardians can create their own GFM account which gives them their own sanctuary to store files.
-2. Shared Sanctuaries
-   - Guardians can share sanctuaries with other guardians, allowing them to send and receive files with one another.
+2. Shared Sanctuary
+   - Guardians can share a sanctuary with other guardians, allowing them to send and receive files with one another. Elder Guardians can choose how much power a guardian has on the Shared Sanctuary.
 3. File Previewing
    - Guardians can preview txt, pdf, and most image file formats.
 4. Sanctuary Modification
-   - Guardians can upload, download, and delete uploaded contents from their own sanctuary. With sufficient permissions, guardians can modify shared sanctuaries.
+   - Guardians can upload, download, and delete uploaded content from their own sanctuary. With sufficient permissions, guardians can modify the Shared Sanctuary.
 5. Batch File Uploading
 
 ## QoL
@@ -26,7 +26,7 @@ This was a little project I put together for my LSU Intro to Cybersecurity class
 
 ## Technologies
 - Apache2
-- OpenLDAP (implmentation of ldap)
+- OpenLDAP (Linux implementation of LDAP)
 - OpenSSL
 - Amazon Elastic Compute Cloud (EC2)
 - Duck DNS
