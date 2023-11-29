@@ -31,6 +31,7 @@ This was a little project I put together for my LSU Intro to Cybersecurity class
 - Amazon Elastic Compute Cloud (EC2)
 - Duck DNS
 - Let's Encrypt
+- Wireshark (testing)
 
 ## Languages
 - HTML
