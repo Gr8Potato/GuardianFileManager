@@ -39,5 +39,8 @@ This was a little project I put together for my LSU Intro to Cybersecurity class
 - JavaScript
 - PHP
 
+## Frameworks
+No frameworks were used to make this project. I wanted to sit down and see how a project could be done "the old-fashioned way." I intend to pick up frameworks to see how they affect the ease of work as a developer for future projects.
+
 ### Architecture
 [This was a rough mental map I had in the back of my mind when making this project.](https://imgur.com/a/X1NhrFh) Specific technologies and modules were decided along the way.
