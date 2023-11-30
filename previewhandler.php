@@ -12,7 +12,7 @@ if (isset($_GET['filename'], $_GET['filetype'])) {
         audit_log($_SESSION["user"] . " FAILED to PREVIEW " . $_GET['filename']);
         exit;
     }
-    
+
     sanitize($filename);
     sanitize($filetype);
 
@@ -21,9 +21,8 @@ if (isset($_GET['filename'], $_GET['filetype'])) {
         $user_dir = "/home/" . $_SESSION["user"];
     } elseif ($filetype === 'shared') {
         $user_dir = "/home/shared";
-    }
-    else{
-        echo"Improper request format\n";
+    } else {
+        echo "Improper request format\n";
         exit;
     }
 
@@ -49,6 +48,18 @@ if (isset($_GET['filename'], $_GET['filetype'])) {
             case 'txt':
                 audit_log($_SESSION["user"] . " PREVIEW " . $_GET['filename']);
                 header('Content-Type: text/plain');
+                readfile($file_path);
+                break;
+            case 'ppt':
+            case 'pptx':
+                audit_log($_SESSION["user"] . " PREVIEW " . $_GET['filename']);
+                header('Content-Type: application/vnd.ms-powerpoint');
+                readfile($file_path);
+                break;
+            case 'doc':
+            case 'docx':
+                audit_log($_SESSION["user"] . " PREVIEW " . $_GET['filename']);
+                header('Content-Type: application/msword');
                 readfile($file_path);
                 break;
             default:

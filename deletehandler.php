@@ -7,6 +7,8 @@ if (isset($_POST['filename'])) {
 
     $exclude = array('.bash_history', '.cache', '.bash_logout', '.config', '.local', '.bashrc', '.profile', 'snap');
 
+    sanitize($file_name);
+    sanitize($filetype);
 
     $user_dir = $filetype === 'personal' ? "/home/" . $_SESSION["user"] : "/home/shared";
     $file_path = $user_dir . '/' . $file_name;
@@ -33,5 +35,12 @@ function audit_log($message)
     $logMessage = $timestamp . ' - ' . $message . PHP_EOL;
 
     file_put_contents($file, $logMessage, FILE_APPEND | LOCK_EX);
+}
+
+function sanitize(&$data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
 }
 ?>
