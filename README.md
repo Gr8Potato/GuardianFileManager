@@ -1,4 +1,3 @@
-```md
 # Guardian File Manager (GFM)
 This was a little project I put together for my LSU Intro to Cybersecurity class. You can access the GFM at https://guardianfilemanager.duckdns.org.
 
@@ -45,4 +44,3 @@ No frameworks were used to make this project. I wanted to sit down and see how a
 
 ### Architecture
 [This was a rough mental map I had in the back of my mind when making this project.](https://imgur.com/a/X1NhrFh) Specific technologies and modules were decided along the way.
-```
