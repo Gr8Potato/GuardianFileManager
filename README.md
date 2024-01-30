@@ -1,5 +1,5 @@
 # Guardian File Manager (GFM)
-This was a little project I put together for my LSU Intro to Cybersecurity class. ~~You can access the GFM at https://guardianfilemanager.duckdns.org.~~ [Edit: I've indefinitely suspended the EC2 instance that was running the website.]
+This was a little project I put together for my Intro to Cybersecurity class. ~~You can access the GFM at https://guardianfilemanager.duckdns.org.~~ [Edit: I've indefinitely suspended the EC2 instance that was running the website.]
 
 ## Features
 1. Account Registration
